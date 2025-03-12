@@ -3,10 +3,16 @@
 A simple Pong clone for **macOS**, built with **SpriteKit**.
 
 ## Setup
+
+Download the release and play!
+
+   or
+
 1. Clone or download the repository.
 2. Open the Xcode project/workspace.
 3. Make sure the build target is set to macOS.
 4. Press **Run** (Command + R) to launch the game.
+   
 
 ## How to Play
 - Move your mouse up and down to control the left paddle.
