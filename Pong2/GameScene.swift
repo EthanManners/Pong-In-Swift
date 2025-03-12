@@ -17,6 +17,7 @@ class GameScene: SKScene {
     var mainLbl = SKLabelNode()
     var enemyLbl = SKLabelNode()
     var score = [Int]()
+    let array = [-1, 1]
     
     
     override func didMove(to view: SKView) {
@@ -34,6 +35,7 @@ class GameScene: SKScene {
         
         // Cast nodes to SpriteKit types to manipulate with code
         startGame()
+        
         enemyLbl = self.childNode(withName: "rightLabel") as!
             SKLabelNode
         mainLbl = self.childNode(withName: "leftLabel") as!
@@ -67,11 +69,11 @@ class GameScene: SKScene {
         // Increase score and launch ball towards opposite player
         if playerWhoWon == main {
             score[0] += 1
-            ball.physicsBody?.applyImpulse(CGVector(dx: 20, dy: 20))
+            ball.physicsBody?.applyImpulse(CGVector(dx: 20, dy: (array.shuffled().first)! * 20))
         }
         else if playerWhoWon == enemy {
             score[1] += 1
-            ball.physicsBody?.applyImpulse(CGVector(dx: -20, dy: -20))
+            ball.physicsBody?.applyImpulse(CGVector(dx: -20, dy: (array.shuffled().first)! * 20))
         }
         
         // Print score to console
@@ -92,7 +94,7 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         // Move enemy y position to ball, (higher duration = more difficulty)
         enemy.run(SKAction.moveTo(y: ball.position.y, duration: 0.42 ))
-        
+
         // Check for ball being behind paddles
         if ball.position.x <= main.position.x - 70 {
             addScore(playerWhoWon: enemy)
